@@ -1,0 +1,12 @@
+.addedToBasketPane {
+    -fx-background-color: #6A6969;
+
+    -fx-background-radius: 15px;
+}
+
+.addedToBasketLabel {
+
+    -fx-text-fill: #EAEAEA;
+}
+
+
