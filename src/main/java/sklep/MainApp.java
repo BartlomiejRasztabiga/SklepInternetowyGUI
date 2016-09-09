@@ -27,6 +27,7 @@ public class MainApp extends Application {
 
     public MainApp()
     {
+        //Simple change to invoke Travis CL Build
         //TODO HIBERNATE Zmusić do działania
         //TODO Wyświetlać w koszyku tylko raz taki sam produkt(dodać kolumne ilosc)
     }
