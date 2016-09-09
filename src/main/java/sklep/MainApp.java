@@ -28,6 +28,7 @@ public class MainApp extends Application {
     public MainApp()
     {
         //TODO HIBERNATE Zmusić do działania
+        //TODO Wyświetlać w koszyku tylko raz taki sam produkt(dodać kolumne ilosc)
     }
 
     @Override

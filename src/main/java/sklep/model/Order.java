@@ -33,18 +33,13 @@ public class Order {
 
     }
 
-    public void payOrder(User user)
+    public void payOrder(User user) throws Exception
     {
         double change = price * -1;
 
-        try {
             if(price > 0) user.getAccount().changeBalance(change);
             else throw new Exception("Kwota zamówienia była mniejsza lub równa 0");
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
             cancelOrder();
-        }
 
         // wysyłanie produktów
 

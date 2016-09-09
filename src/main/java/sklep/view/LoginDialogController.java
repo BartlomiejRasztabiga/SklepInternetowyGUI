@@ -121,6 +121,7 @@ public class LoginDialogController{
 
     }
 
+    //TODO Może jednak dać ScheduledService
     public static class GetUserService extends Service<User> {
 
         private StringProperty username = new SimpleStringProperty();

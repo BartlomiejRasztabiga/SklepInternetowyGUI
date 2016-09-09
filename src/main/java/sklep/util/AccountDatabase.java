@@ -1,5 +1,7 @@
 package sklep.util;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import sklep.model.Account;
 
 import java.sql.PreparedStatement;
@@ -65,6 +67,8 @@ public class AccountDatabase {
         }
 
     }
+
+
 
     public static void setBalance(Account acc)
     {

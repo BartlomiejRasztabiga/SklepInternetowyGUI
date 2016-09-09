@@ -110,7 +110,7 @@ public class OrderOverviewController {
 
         mainApp.setOrderOverviewController(this);
 
-        //TODO Dodac telefony i emaile
+        //TODO Dodac telefony i emaile i ich walidatory
         /*String email = "bartlomiej.rasztabiga.official@gmail.com";
         EmailValidator validator = EmailValidator.getInstance(false, false);
         System.out.println(validator.isValid(email));*/
@@ -132,6 +132,53 @@ public class OrderOverviewController {
             alert.setContentText("Adres do wysyłki jest pusty, uzupełnij dane, a następnie spróbuj ponownie");
             alert.showAndWait();
         }
+
+        //TODO Sprawdzenie czy dodano email i telefon
+
+        try {
+            order.payOrder(mainApp.getUser());
+            mainApp.getBasket().getProducts().clear();
+        } catch (Exception e) {
+            //if(e.getMessage().equals("Nie wystarczająca ilość pieniędzy na koncie"))
+            //{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Za mała ilość pieniędzy na koncie");
+                alert.setHeaderText("Za mała kwota na koncie aby opłacić zamówienie");
+                alert.setContentText("");
+                alert.showAndWait();
+            //}
+        }
+
+        LoginDialogController.GetUserService service = new LoginDialogController.GetUserService();
+        service.setUsername(mainApp.getUser().getUserCredentials().getUsername());
+        service.start();
+        service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                mainApp.setUser(service.getValue());
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Płatność zrealizowana");
+                alert.setHeaderText("Płatność została pomyślnie zakończona");
+                alert.setContentText("Aktualny stan konta: " + mainApp.getUser().getAccount().getBalance());
+                alert.showAndWait();
+                closeStage();
+
+            }
+        });
+        service.setOnFailed(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Błąd bazy danych");
+                alert.setHeaderText("Błąd bazy danych. Spróbuj ponownie później");
+                alert.setContentText("");
+                alert.showAndWait();
+            }
+        });
     }
 
     public void closeStage() { this.orderStage.close(); }

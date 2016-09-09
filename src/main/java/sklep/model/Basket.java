@@ -26,6 +26,11 @@ public class Basket {
 
     }
 
+    public void removeProduct(Product product)
+    {
+        products.remove(product);
+    }
+
     public void removeProduct(int id)
     {
         Product[] x = new Product[products.size()];
