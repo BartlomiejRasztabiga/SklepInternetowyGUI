@@ -2,4 +2,3 @@ language: java
 script: mvn compile
 jdk:
   - oraclejdk8
-  - oraclejdk7
