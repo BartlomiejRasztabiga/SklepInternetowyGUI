@@ -79,13 +79,20 @@
                     <include>**/*.css</include>
                 </includes>
             </resource>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <includes>
+                    <include>database.properties</include>
+                </includes>
+            </resource>
+
         </resources>
     </build>
     <dependencies>
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
-            <version>1.5.1-RC</version>
+            <version>1.5.2</version>
         </dependency>
         <dependency>
             <groupId>commons-validator</groupId>
